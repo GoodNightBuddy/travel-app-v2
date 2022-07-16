@@ -111,13 +111,17 @@ select {
 .input input {
   min-width: 160px;
   min-height: 45px;
-  padding: 10px 15px 10px 50px;
+  padding: 10px 15px;
   font-size: var(--font-size-300);
   background-color: var(--color-blue-100);
   border: none;
   border-radius: 1px;
   cursor: text;
   appearance: none;
+}
+
+.trips-filter__search input {
+  padding: 10px 15px 10px 50px;
 }
 
 .input input::placeholder {
@@ -233,4 +237,12 @@ select {
   color: var(--color-blue-200);
   font-size: var(--font-size-600);
   line-height: 1;
+}
+
+a,
+a:active,
+a:visited ,
+a:focus {
+  text-decoration: none;
+  color: #000;
 }
