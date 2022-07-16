@@ -1,37 +1,17 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
+import heartIcon from "../../../images/heart.svg";
+import icelandImage from "../../../images/iceland.jpg";
+import './styles.scss'
+
+
+
 const TripPage: React.FC<any> = props => {
   return (
     <>
-       <header className="header">
-      <div className="header__inner">
-        <a href="./index.html" className="header__logo">Travel App</a>
-        <nav className="header__nav">
-          <ul className="nav-header__list">
-            <li className="nav-header__item" title="Bookings">
-              <a href="./bookings.html" className="nav-header__inner">
-                <span className="visually-hidden">Bookings</span>
-                <img src="./assets/images/briefcase.svg" alt=" icon" />
-              </a>
-            </li>
-            <li className="nav-header__item" title="Profile">
-              <div className="nav-header__inner profile-nav" tabIndex={0}>
-                <span className="visually-hidden">Profile</span>
-                <img src="./assets/images/user.svg" alt="profile icon" />
-                <ul className="profile-nav__list">
-                  <li className="profile-nav__item profile-nav__username">John Doe</li>
-                  <li className="profile-nav__item">
-                    <button className="profile-nav__sign-out button">Sign Out</button>
-                  </li>
-                </ul>
-              </div>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </header>
     <main className="trip-page">
       <h1 className="visually-hidden">Travel App</h1>
       <div className="trip">
-        <img src="./assets/images/iceland.jpg" className="trip__img" alt="trip image" />
+        <img src={icelandImage} className="trip__img" alt="trip image" />
         <div className="trip__content">
           <div className="trip-info">
             <h3 className="trip-info__title">Iceland</h3>
@@ -55,13 +35,7 @@ const TripPage: React.FC<any> = props => {
         </div>
       </div>
     </main>
-    <footer className="footer">
-      <span className="footer__text">
-        from <a className="footer__link" href="https://binary-studio.com">binary studio</a> with
-        <img className="footer__icon" src="./assets/images/heart.svg" alt="heart icon" />
-      </span>
-    </footer>
-    <div hidden>
+    <div hidden={true}>
       <div className="modal">
         <div className="trip-popup">
           <button className="trip-popup__close">×</button>

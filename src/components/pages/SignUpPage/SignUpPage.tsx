@@ -1,11 +1,7 @@
+import './styles.scss';
+
 const SignUpPage: React.FC<any> = props => {
   return (
-    <>
-       <header className="header">
-      <div className="header__inner">
-        <a href="./index.html" className="header__logo">Travel App</a>
-      </div>
-    </header>
     <main className="sign-up-page">
       <h1 className="visually-hidden">Travel App</h1>
       <form className="sign-up-form" autoComplete="off">
@@ -29,13 +25,6 @@ const SignUpPage: React.FC<any> = props => {
         <a href="./sign-in.html" className="sign-up-form__link">Sign In</a>
       </span>
     </main>
-    <footer className="footer">
-      <span className="footer__text">
-        from <a className="footer__link" href="https://binary-studio.com">binary studio</a> with
-        <img className="footer__icon" src="./assets/images/heart.svg" alt="heart icon" />
-      </span>
-    </footer>
-    </>
   )
 };
 
