@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './styles.scss';
 
 const SignUpPage: React.FC<any> = () => {
@@ -36,7 +36,7 @@ const SignUpPage: React.FC<any> = () => {
       </form>
       <span>
         Already have an account?
-        <a href="./sign-in.html" className="sign-up-form__link">Sign In</a>
+        <Link to={'/sign-in'} className="sign-up-form__link">Sign In</Link>
       </span>
     </main>
   )

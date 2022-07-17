@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
-import briefcase from "../../images/briefcase.svg";
-import user from "../../images/user.svg";
+import briefcase from "../../../images/briefcase.svg";
+import user from "../../../images/user.svg";
+import './styles.scss'
 
 const HeaderNav: React.FC = () => {
   return (

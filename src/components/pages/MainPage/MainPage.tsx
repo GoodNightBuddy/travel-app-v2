@@ -1,21 +1,41 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import icelandImage from "../../../images/iceland.jpg";
+import Trips from '../../common/Trips/Trips';
+import trips from '../../../data/trips.json';
 import './styles.scss'
+import { useRef, useState } from 'react';
+import { ITrip } from '../../common/Trips/types/types';
 
-const MainPage: React.FC<any> = props => {
+
+
+const MainPage: React.FC = () => {
+  useState(trips as ITrip[])
+
+  const [title, setTitle] = useState('')
+  const duration = useRef(null)
+  const level = useRef(null)
+
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault()
+    console.log(title);
+    console.log(duration);
+    console.log(level);
+    
+
+  }
+  
   return (
     <main>
       <h1 className="visually-hidden">Travel App</h1>
       <section className="trips-filter">
         <h2 className="visually-hidden">Trips filter</h2>
-        <form className="trips-filter__form" autoComplete="off">
+        <form className="trips-filter__form" autoComplete="off" onSubmit={handleSubmit}>
           <label className="trips-filter__search input">
             <span className="visually-hidden">Search by name</span>
-            <input name="search" type="search" placeholder="search by title" />
+            <input name="search" type="search" placeholder="search by title" onChange={e => setTitle(e.target.value)} />
           </label>
           <label className="select">
             <span className="visually-hidden">Search by duration</span>
-            <select name="duration">
+            <select name="duration" onChange={e => console.log(e.target.value)}>
               <option value="">duration</option>
               <option value="0_x_5">&lt; 5 days</option>
               <option value="5_x_10">&lt; 10 days</option>
@@ -24,7 +44,7 @@ const MainPage: React.FC<any> = props => {
           </label>
           <label className="select">
             <span className="visually-hidden">Search by level</span>
-            <select name="level">
+            <select name="level" ref={level}>
               <option value="">level</option>
               <option value="easy">easy</option>
               <option value="moderate">moderate</option>
@@ -33,79 +53,7 @@ const MainPage: React.FC<any> = props => {
           </label>
         </form>
       </section>
-      <section className="trips">
-        <h2 className="visually-hidden">Trips List</h2>
-        <ul className="trip-list">
-          <li className="trip-card">
-          <img src={icelandImage} alt="trip image" />
-            <div className="trip-card__content">
-              <div className="trip-info">
-                <h3 className="trip-info__title">Iceland</h3>
-                <div className="trip-info__content">
-                  <span className="trip-info__duration"><strong>15</strong> days</span>
-                  <span className="trip-info__level">easy</span>
-                </div>
-              </div>
-              <div className="trip-price">
-                <span>Price</span>
-                <strong className="trip-price__value">7000 $</strong>
-              </div>
-            </div>
-            <a href="./trip.html" className="button">Discover a trip</a>
-          </li>
-          <li className="trip-card">
-          <img src={icelandImage} alt="trip image" />
-            <div className="trip-card__content">
-              <div className="trip-info">
-                <h3 className="trip-info__title">Iceland</h3>
-                <div className="trip-info__content">
-                  <span className="trip-info__duration"><strong>15</strong> days</span>
-                  <span className="trip-info__level">easy</span>
-                </div>
-              </div>
-              <div className="trip-price">
-                <span>Price</span>
-                <strong className="trip-price__value">7000 $</strong>
-              </div>
-            </div>
-            <a href="./trip.html" className="button">Discover a trip</a>
-          </li>
-          <li className="trip-card">
-            <img src={icelandImage} alt="trip image" />
-            <div className="trip-card__content">
-              <div className="trip-info">
-                <h3 className="trip-info__title">Iceland</h3>
-                <div className="trip-info__content">
-                  <span className="trip-info__duration"><strong>15</strong> days</span>
-                  <span className="trip-info__level">easy</span>
-                </div>
-              </div>
-              <div className="trip-price">
-                <span>Price</span>
-                <strong className="trip-price__value">7000 $</strong>
-              </div>
-            </div>
-            <a href="./trip.html" className="button">Discover a trip</a>
-          </li>
-          <li className="trip-card">
-          <img src={icelandImage} alt="trip image" />
-            <div className="trip-card__content">
-              <div className="trip-info">
-                <h3 className="trip-info__title">Iceland</h3>
-                <div className="trip-info__content">
-                  <span className="trip-info__duration"><strong>15</strong> days</span>
-                  <span className="trip-info__level">easy</span>
-                </div>
-              </div>
-              <div className="trip-price">
-                <span>Price</span>
-                <strong className="trip-price__value">7000 $</strong>
-              </div>
-            </div>
-            <a href="./trip.html" className="button">Discover a trip</a>
-          </li>
-        </ul>
-      </section>
+      <Trips trips={trips}/>
     </main>
   )
 };

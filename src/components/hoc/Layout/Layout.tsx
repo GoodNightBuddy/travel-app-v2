@@ -1,7 +1,7 @@
 import heartIcon from "../../../images/heart.svg"
 import { Link, Outlet, useMatch } from "react-router-dom";
 import './styles.scss'
-import HeaderNav from "../../common/HeaderNav";
+import HeaderNav from "../../common/HeaderNav/HeaderNav";
 
 const Layout: React.FC = () => {
 
