@@ -4,8 +4,6 @@ import { TripProps } from './types/types';
 
 
 const Trips: React.FC<TripProps> = (props) => {
-  console.log(props.trips);
-  
   return (
     <section className="trips">
     <h2 className="visually-hidden">Trips List</h2>
@@ -14,7 +12,7 @@ const Trips: React.FC<TripProps> = (props) => {
       props.trips.map(info => {
         return <TripCard tripInfo={info} key={info.id}/>
       })
-      : <h1 style={{height: '320px'}}>Nichego ne naideno...</h1>
+      : <h1 style={{height: '500px'}}>Nichego ne naideno...</h1>
       }
       
     </ul>

@@ -2,7 +2,7 @@
 import Trips from '../../common/Trips/Trips';
 import tripData from '../../../data/trips.json';
 import './styles.scss'
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { ITrip } from '../../common/Trips/types/types';
 
 
@@ -11,11 +11,11 @@ const MainPage: React.FC = () => {
   useState(tripData as ITrip[])
   const [trips, setTrips] = useState(tripData)
 
-  const [title, setTitle] = useState('')
-  const [duration, setDuration] = useState('')
-  const [level, setLevel] = useState('')
+  const [searcTitle, setSearchTitle] = useState('')
+  const [searchDuration, setSearchDuration] = useState('')
+  const [searchLevel, setSearchLevel] = useState('')
 
-  const filter = (): void => {
+  const filter = ({title = searcTitle, duration = searchDuration, level = searchLevel}): void => {
     const filteredTrips = tripData.filter(trip => {
       if (title) {
         if (!trip.title.toLocaleLowerCase().includes(title.toLocaleLowerCase())) return false
@@ -41,15 +41,22 @@ const MainPage: React.FC = () => {
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault()
-    filter()
+    filter({})
+  }
+
+  const onChangeTitle: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    setSearchTitle(e.target.value)
   }
 
   const onChangeDuration: React.ChangeEventHandler<HTMLSelectElement> = (e) => {
-    setDuration(e.target.value)
+    setSearchDuration(e.target.value)
+    filter({duration: e.target.value})
+
   }
 
   const onChangeLevel: React.ChangeEventHandler<HTMLSelectElement> = (e) => {
-    setLevel(e.target.value)
+    setSearchLevel(e.target.value)
+    filter({level: e.target.value})
   }
 
   return (
@@ -60,7 +67,7 @@ const MainPage: React.FC = () => {
         <form className="trips-filter__form" autoComplete="off" onSubmit={handleSubmit}>
           <label className="trips-filter__search input">
             <span className="visually-hidden">Search by name</span>
-            <input name="search" type="search" placeholder="search by title" onChange={e => setTitle(e.target.value)} />
+            <input name="search" type="search" placeholder="search by title" onChange={onChangeTitle} />
           </label>
           <label className="select">
             <span className="visually-hidden">Search by duration</span>
