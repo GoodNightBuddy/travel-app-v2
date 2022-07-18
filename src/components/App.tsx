@@ -1,7 +1,5 @@
 import React from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import './App.scss';
-import bookings from '../data/bookings.json'
 import BookingPage from './pages/BookingPage/BookingPage';
 import MainPage from './pages/MainPage/MainPage';
 import SignInPage from './pages/SignInPage/SignInPage';
