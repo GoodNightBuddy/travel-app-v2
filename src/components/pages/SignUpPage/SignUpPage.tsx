@@ -2,16 +2,24 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './styles.scss';
 
-const SignUpPage: React.FC<any> = () => {
+const SignUpPage: React.FC = () => {
 
   const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('')
+  const [fullName, setFullName] = useState('')
 
   const navigate = useNavigate()
 
-  const handleSubmit: React.FormEventHandler<HTMLFormElement>  = e => {
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = e => {
     e.preventDefault()
-    if(password.length >= 3) {
-      navigate('/')
+    if (password.length >= 3) {
+      // navigate('/')
+      const user = {
+        fullName,
+        email,
+        password
+      }
+
     }
   }
 
@@ -22,11 +30,11 @@ const SignUpPage: React.FC<any> = () => {
         <h2 className="sign-up-form__title">Sign Up</h2>
         <label className="trip-popup__input input">
           <span className="input__heading">Full name</span>
-          <input name="full-name" type="text" required />
+          <input name="full-name" type="text" required onChange={e => setFullName(e.target.value)} />
         </label>
         <label className="trip-popup__input input">
           <span className="input__heading">Email</span>
-          <input name="email" type="email" required />
+          <input name="email" type="email" required onChange={e => setEmail(e.target.value)} />
         </label>
         <label className="trip-popup__input input">
           <span className="input__heading">Password</span>
