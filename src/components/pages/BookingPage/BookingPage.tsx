@@ -6,6 +6,7 @@ import {IBooking} from './types/types'
 
 const BookingPage: React.FC = () => {
   useState(bookings as IBooking[])
+
   return (
     <main className="bookings-page">
       <h1 className="visually-hidden">Travel App</h1>

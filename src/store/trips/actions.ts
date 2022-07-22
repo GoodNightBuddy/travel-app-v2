@@ -26,15 +26,15 @@ const getTrips = createAsyncThunk<ITrip[], void>(
 
 const getTrip = createAsyncThunk<ITrip, string>(
   ActionType.GET_TRIP,
-  async (id) => {
+  async (tripId) => {
     const token = storage.getItem('token')
-    const response = await fetch(`https://travel-app-api.glitch.me/api/v1/trips/${id}`, {
+    const response = await fetch(`https://travel-app-api.glitch.me/api/v1/trips/${tripId}`, {
       method: 'GET',
       headers: {
         "Authorization": `Bearer ${token}`
       },
     })
-    console.log(response)
+    
     if (response.status !== 200) {
       const { message } = await response.json()
       throw new Error(message)

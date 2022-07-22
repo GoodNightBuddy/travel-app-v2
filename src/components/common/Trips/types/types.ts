@@ -11,8 +11,6 @@ interface ITrip {
   createdAt: string;
 }
 
-type FilteredTrips = null | ITrip[]
-
 type TripProps = {
   trips: ITrip[]
 }
@@ -23,4 +21,4 @@ type TripCardProps = {
 
 
 
-export type { ITrip, TripProps, TripCardProps, FilteredTrips }
+export type { ITrip, TripProps, TripCardProps, }

@@ -1,5 +1,6 @@
 import { TypedUseSelectorHook, useSelector } from 'react-redux';
 import { ITrip } from '../../components/common/Trips/types/types';
+import { IBooking } from '../../components/pages/BookingPage/types/types';
 import { store } from '../store';
 
 
@@ -7,6 +8,11 @@ import { store } from '../store';
 interface IStateAuth {
   user: null | IUser,
   loading: boolean
+}
+
+interface IStateBookings {
+  loading: boolean,
+  bookings: IBooking[] | []
 }
 
 interface IUser {
@@ -35,6 +41,13 @@ type UserSignOutDto = {
   user: null
 }
 
+type BookingDto = {
+  tripId: string | undefined;
+  userId: string | undefined;
+  guests: number;
+  date: Date;
+}
+
 interface IStateTrips {
   loading: boolean;
   trips: ITrip[];
@@ -55,5 +68,7 @@ export type {
   UserSignInDto,
   UserSignOutDto,
   IStateTrips,
-  IUserTdo
+  IUserTdo,
+  IStateBookings,
+  BookingDto
 };

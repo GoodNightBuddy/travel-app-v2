@@ -3,7 +3,7 @@ import Trips from '../../common/Trips/Trips';
 import tripData from '../../../data/trips.json';
 import './styles.scss'
 import { useEffect, useState } from 'react';
-import { FilteredTrips, ITrip } from '../../common/Trips/types/types';
+import { ITrip } from '../../common/Trips/types/types';
 import { AppDispatch, useAppSelector } from '../../../store/types/types';
 import { Loader } from '../../common/Loader/Loader';
 import { useDispatch } from 'react-redux';
@@ -20,19 +20,18 @@ const MainPage: React.FC = () => {
   
   const isLoading = useAppSelector(state => state.trips.loading)
   const tripsData = useAppSelector(state => state.trips.trips)
-  // const [trips, setTrips] = useState(tripsData)
-  let filteredTrips: FilteredTrips = null
+  const [trips, setTrips] = useState(tripsData)
   
-  // useEffect(() => {
-  //   setTrips(tripsData)
-  // }, [tripsData])
+  useEffect(() => {
+    setTrips(tripsData)
+  }, [tripsData])
 
   const [searcTitle, setSearchTitle] = useState('')
   const [searchDuration, setSearchDuration] = useState('')
   const [searchLevel, setSearchLevel] = useState('')
 
   const filter = ({ title = searcTitle, duration = searchDuration, level = searchLevel }): void => {
-    filteredTrips = tripsData.filter(trip => {
+    const filteredTrips = tripsData.filter(trip => {
       if (title) {
         if (!trip.title.toLocaleLowerCase().includes(title.toLocaleLowerCase())) return false
       }
@@ -52,7 +51,7 @@ const MainPage: React.FC = () => {
       }
       return true
     })
-    // setTrips(filteredTrips)
+    setTrips(filteredTrips)
   }
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
@@ -108,7 +107,7 @@ const MainPage: React.FC = () => {
               </label>
             </form>
           </section>
-          <Trips trips={filteredTrips ? filteredTrips : tripsData} />
+          <Trips trips={trips} />
         </main>
       }
     </>
