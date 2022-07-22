@@ -21,7 +21,6 @@ function App() {
     if (token) {
       dispatch(authActionCreator.reSignIn(token));
     }
-
   }, [])
 
   const isSigned = useAppSelector(state => !!state.auth.user)

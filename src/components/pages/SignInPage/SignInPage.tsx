@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { authActionCreator } from '../../../store/action';
 import { AppDispatch, useAppSelector } from '../../../store/types/types';
+import { Loader } from '../../common/Loader/Loader';
 import './styles.scss';
 
 const SignInPage: React.FC = () => {
@@ -26,7 +27,7 @@ const SignInPage: React.FC = () => {
   return (
     <>
       {isLoading
-        ? <div className='loader'></div>
+        ? <Loader />
         : <main className="sign-in-page">
           <h1 className="visually-hidden">Travel App</h1>
           <form className="sign-in-form" autoComplete="off" onSubmit={handeSubmit}>

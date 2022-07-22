@@ -1,9 +1,20 @@
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom"
 import briefcase from "../../../images/briefcase.svg";
 import user from "../../../images/user.svg";
+import { authActionCreator } from "../../../store/action";
+import { AppDispatch, useAppSelector } from "../../../store/types/types";
 import './styles.scss'
 
 const HeaderNav: React.FC = () => {
+  const  dispatch = useDispatch() as AppDispatch
+
+  const handleSignOut = () => {
+    dispatch(authActionCreator.signOut())
+  }
+
+  const name = useAppSelector(state => state.auth.user?.fullName)
+
   return (
     <nav className="header__nav">
       <ul className="nav-header__list">
@@ -18,9 +29,9 @@ const HeaderNav: React.FC = () => {
             <span className="visually-hidden">Profile</span>
             <img src={user} alt="profile icon" />
             <ul className="profile-nav__list">
-              <li className="profile-nav__item profile-nav__username">John Doe</li>
+              <li className="profile-nav__item profile-nav__username">{name}</li>
               <li className="profile-nav__item">
-                <button className="profile-nav__sign-out button"><Link to={'sign-in'}>Sign Out</Link></button>
+                <button className="profile-nav__sign-out button" onClick={handleSignOut}>Sign Out</button>
               </li>
             </ul>
           </div>

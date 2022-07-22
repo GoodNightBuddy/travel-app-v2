@@ -1,10 +1,10 @@
 import { TypedUseSelectorHook, useSelector } from 'react-redux';
+import { ITrip } from '../../components/common/Trips/types/types';
 import { store } from '../store';
 
 
 
-interface IState {
-  authenticated: boolean,
+interface IStateAuth {
   user: null | IUser,
   loading: boolean
 }
@@ -16,6 +16,11 @@ interface IUser {
   createdAt: string
 }
 
+interface IUserTdo{
+  user: IUser
+}
+
+
 interface IResponse {
   token: string,
   user: IUser
@@ -24,12 +29,31 @@ interface IResponse {
 type UserSignInDto = {
   email: string,
   password: string
-} 
+}
 
+type UserSignOutDto = {
+  user: null
+}
+
+interface IStateTrips {
+  loading: boolean;
+  trips: ITrip[];
+  currentTrip: ITrip | null;
+}
 
 type RootState = ReturnType<typeof store.getState>
 type AppDispatch = typeof store.dispatch
 const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 export { useAppSelector };
-export type { IState, RootState, AppDispatch, IUser, IResponse, UserSignInDto };
+export type {
+  IStateAuth,
+  RootState,
+  AppDispatch,
+  IUser,
+  IResponse,
+  UserSignInDto,
+  UserSignOutDto,
+  IStateTrips,
+  IUserTdo
+};

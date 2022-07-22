@@ -1,31 +1,20 @@
 import { createReducer, isAnyOf } from "@reduxjs/toolkit";
-import { IState } from "../types/types";
-import { checkToken, signIn, reSignIn } from "./action";
+import { IStateAuth} from "../types/types";
+import { signUp, signIn, reSignIn, signOut } from "./actions";
 
 
-const initialState: IState = {
-  authenticated: false,
+const initialState: IStateAuth = {
   user: null,
   loading: false
 }
 const reducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(checkToken, (state, action) => {
-      state.authenticated = !!localStorage.getItem('token')
-    })
-    // .addCase(signIn.fulfilled, (state, action) => {
-    //   state.loading = false
-    //   state.user = action.payload.user
-    // })
-    // .addCase(signIn.rejected, (state, action) => {
-    //   state.loading = false
-    //   alert(action.error.message)
-    // })
-
     .addMatcher(
       isAnyOf(
         signIn.pending,
-        reSignIn.pending
+        signOut.pending,
+        reSignIn.pending,
+        signUp.pending
       ),
       state => {
         state.loading = true
@@ -35,7 +24,9 @@ const reducer = createReducer(initialState, (builder) => {
     .addMatcher(
       isAnyOf(
         signIn.fulfilled,
-        reSignIn.fulfilled
+        signOut.fulfilled,
+        reSignIn.fulfilled,
+        signUp.fulfilled
       ),
       (state, action) => {
         state.loading = false
@@ -46,7 +37,9 @@ const reducer = createReducer(initialState, (builder) => {
     .addMatcher(
       isAnyOf(
         signIn.rejected,
-        reSignIn.rejected
+        signOut.rejected,
+        reSignIn.rejected,
+        signUp.rejected,
       ),
       (state, action) => {
         state.loading = false
@@ -54,18 +47,6 @@ const reducer = createReducer(initialState, (builder) => {
       }
     )
 })
-
-// .addMatcher(
-//   isAnyOf(
-//     login.fulfilled,
-//     logout.fulfilled,
-//     register.fulfilled,
-//     loadCurrentUser.fulfilled
-//   ),
-//   (state, action) => {
-//     state.user = action.payload;
-//   }
-// )
 
 export { reducer };
 

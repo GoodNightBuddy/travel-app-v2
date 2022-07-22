@@ -21,7 +21,3 @@ const Trips: React.FC<TripProps> = (props) => {
 }
 
 export default Trips
-
-// {props.trips.map(info => {
-      //   return <TripCard tripInfo={info} key={info.id}/>
-      // })}

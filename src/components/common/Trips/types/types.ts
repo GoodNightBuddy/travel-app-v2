@@ -1,3 +1,5 @@
+import { type } from "os";
+
 interface ITrip {
   id: string;
   title: string;
@@ -9,6 +11,8 @@ interface ITrip {
   createdAt: string;
 }
 
+type FilteredTrips = null | ITrip[]
+
 type TripProps = {
   trips: ITrip[]
 }
@@ -17,4 +21,6 @@ type TripCardProps = {
   tripInfo: ITrip
 }
 
-export type { ITrip, TripProps, TripCardProps }
+
+
+export type { ITrip, TripProps, TripCardProps, FilteredTrips }
