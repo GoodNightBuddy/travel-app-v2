@@ -1,7 +1,7 @@
 {
   "name": "travel-app",
   "version": "0.1.0",
-  "homepage": "https://GoodNightBuddy.github.io/travel-app",
+  "homepage": "https://GoodNightBuddy.github.io/travel-app-v2",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.3",
