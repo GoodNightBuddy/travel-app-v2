@@ -4,8 +4,14 @@ import { signUp, signIn, reSignIn, signOut } from "./actions";
 
 
 const initialState: IStateAuth = {
-  user: null,
-  loading: false
+  user: {
+    id: '',
+    fullName: '',
+    email: '',
+    createdAt: ''
+  },
+  loading: false,
+  isSigned: true,
 }
 const reducer = createReducer(initialState, (builder) => {
   builder
@@ -43,6 +49,7 @@ const reducer = createReducer(initialState, (builder) => {
       ),
       (state, action) => {
         state.loading = false
+        state.user = null
         alert(action.error.message)
       }
     )

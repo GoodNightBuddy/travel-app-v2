@@ -68,6 +68,7 @@ const reSignIn = createAsyncThunk<IUserTdo, string>(
 
     if (response.status !== 200) {
       const { message } = await response.json()
+      storage.removeItem('token')
       throw new Error(message)
     } else {
       const user = await response.json() as IUser

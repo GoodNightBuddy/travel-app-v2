@@ -8,6 +8,7 @@ import { store } from '../store';
 interface IStateAuth {
   user: null | IUser,
   loading: boolean
+  isSigned: boolean,
 }
 
 interface IStateBookings {

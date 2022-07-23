@@ -1,13 +1,28 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import './styles.scss'
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AppDispatch, useAppSelector } from "../../../store/types/types";
 import { Loader } from "../../common/Loader/Loader";
 import { useDispatch } from 'react-redux';
-import { bookingsActionCreator } from '../../../store/action';
+import { bookingsActionCreator, tripsActionCreator } from '../../../store/action';
+import { useParams } from 'react-router-dom';
 
 
 const TripPage: React.FC = () => {
+
+  const dispatch = useDispatch() as AppDispatch;
+  const { tripId } = useParams()
+
+
+  useEffect(() => {
+    async function loadTrip(id: string) {
+      await dispatch(tripsActionCreator.getTrip(id))
+    }
+    if (tripId) {
+      loadTrip(tripId)
+    }
+  }, [])
+
 
   const trip = useAppSelector(state => state.trips.currentTrip)
   const user = useAppSelector(state => state.auth.user)
@@ -20,8 +35,6 @@ const TripPage: React.FC = () => {
   const [price, setPrice] = useState(trip?.price)
 
   const dateInput = useRef(null)
-
-  const dispatch = useDispatch() as AppDispatch;
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault()
@@ -53,7 +66,7 @@ const TripPage: React.FC = () => {
 
   const guestsHandler: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     setGuests(+e.target.value)
-    if(!trip) {
+    if (!trip) {
       return
     }
     setPrice((+trip?.price) * (+e.target.value))

@@ -1,19 +1,9 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { tripsActionCreator } from '../../../../store/action'
-import { AppDispatch } from '../../../../store/types/types'
 import { TripCardProps } from '../types/types'
 import './styles.scss'
 
 const TripCard: React.FC<TripCardProps> = (props) => {
-
-  const dispatch = useDispatch() as AppDispatch;
-
-  const clickHandler = () => {
-    dispatch(tripsActionCreator.getTrip(props.tripInfo.id))
-  }
-
   return (
     <li className="trip-card">
       <img src={props.tripInfo.image} alt="trip image" />
@@ -30,7 +20,7 @@ const TripCard: React.FC<TripCardProps> = (props) => {
           <strong className="trip-price__value">{props.tripInfo.price} $</strong>
         </div>
       </div>
-      <Link to={`trip/${props.tripInfo.id}`} className="button" onClick={clickHandler}>Discover a trip</Link>
+      <Link to={`trip/${props.tripInfo.id}`} className="button">Discover a trip</Link>
     </li>
   )
 }
