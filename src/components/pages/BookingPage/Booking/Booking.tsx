@@ -1,4 +1,6 @@
-import { useRef } from 'react'
+import { useDispatch } from 'react-redux'
+import { bookingsActionCreator } from '../../../../store/action'
+import { AppDispatch } from '../../../../store/types/types'
 import { IBookingProps } from '../types/types'
 import './styles.scss'
 
@@ -6,19 +8,14 @@ import './styles.scss'
 const Booking: React.FC<IBookingProps> = (props) => {
   const date = new Date(props.bookingInfo.date)
 
-  const booking = useRef(null)
+  const dispatch = useDispatch() as AppDispatch;
 
-  const deleteBooking: React.MouseEventHandler<HTMLButtonElement> = e => {
-    if(booking.current && booking) {
-      const el = booking.current as HTMLLIElement
-      el.remove()
-    } else {
-      console.log('no booking element');
-    }
+  const deleteBooking: React.MouseEventHandler<HTMLButtonElement> = () => {
+    dispatch(bookingsActionCreator.deleteBooking({ bookingId: props.bookingInfo.id, index: props.index }))
   }
 
   return (
-    <li className="booking" ref={booking}>
+    <li className="booking">
       <h3 className="booking__title">{props.bookingInfo.trip.title}</h3>
       <span className="booking__guests">{props.bookingInfo.guests}</span>
       <span className="booking__date">{date.toLocaleDateString()}</span>

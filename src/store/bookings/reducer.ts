@@ -9,33 +9,18 @@ const initialState: IStateBookings = {
 
 const reducer = createReducer(initialState, builder => {
   builder
+    .addCase(getBookings.fulfilled, (state, action) => {
+      state.loading = false
+      state.bookings = action.payload
+    })
     .addCase(makeBooking.fulfilled, (state, action) => {
       state.loading = false
       state.bookings = [...state.bookings, action.payload]
-      console.log('bookings: ', state.bookings)
     })
     .addCase(deleteBooking.fulfilled, (state, action) => {
       state.loading = false
       state.bookings.splice(+action.payload, 1)
-      console.log(state.bookings)
     })
-
-    // .addCase(makeBooking.fulfilled, (state, action) => {
-    //   state.loading = false
-    //   state.bookings.push(action.payload)
-    // })
-    .addMatcher(
-      isAnyOf(
-        getBookings.fulfilled,
-        // makeBooking.fulfilled,
-        // deleteBooking.fulfilled
-      ),
-      (state, action) => {
-        state.loading = false
-        state.bookings = action.payload
-      }
-    )
-
     .addMatcher(
       isAnyOf(
         getBookings.rejected,
@@ -47,7 +32,6 @@ const reducer = createReducer(initialState, builder => {
         alert(action.error.message)
       }
     )
-
     .addMatcher(
       isAnyOf(
         getBookings.pending,
@@ -56,7 +40,6 @@ const reducer = createReducer(initialState, builder => {
       ),
       (state, action) => {
         state.loading = true
-        // state.bookings
       }
     )
 })

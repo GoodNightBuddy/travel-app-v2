@@ -7,14 +7,12 @@ import { useDispatch } from 'react-redux';
 import { bookingsActionCreator } from '../../../store/action';
 
 
-
 const TripPage: React.FC = () => {
 
   const trip = useAppSelector(state => state.trips.currentTrip)
   const user = useAppSelector(state => state.auth.user)
   const isLoadingTrip = useAppSelector(state => state.trips.loading)
   const isLoadingBooking = useAppSelector(state => state.bookings.loading)
-
 
   const [show, setShow] = useState(true)
   const [guests, setGuests] = useState(1)
@@ -25,7 +23,7 @@ const TripPage: React.FC = () => {
 
   const dispatch = useDispatch() as AppDispatch;
 
-  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault()
     if (new Date() >= date) {
       alert('Enter correct date!')
@@ -38,8 +36,8 @@ const TripPage: React.FC = () => {
       date
     }
 
-    dispatch(bookingsActionCreator.makeBooking(bookingData))
-    // setShow(!show)
+    await dispatch(bookingsActionCreator.makeBooking(bookingData))
+    setShow(!show)
   }
 
   const showModal: React.MouseEventHandler<HTMLButtonElement> = (e) => {
@@ -55,20 +53,10 @@ const TripPage: React.FC = () => {
 
   const guestsHandler: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     setGuests(+e.target.value)
-    setPrice(prevPrice => {
-      if (!trip) {
-        return
-      }
-      return (+trip?.price) * (+e.target.value)
-    })
-    // setPrice(prevPrice => {
-    //   if (prevPrice && trip?.price) {
-    //     return (+trip?.price) * (+e.target.value)
-    //   } else {
-    //     console.log('prevPrice or trip.price is not defined');
-    //   }
-    //   return (+trip?.price) * (+e.target.value)
-    // })
+    if(!trip) {
+      return
+    }
+    setPrice((+trip?.price) * (+e.target.value))
   }
 
   const dateHandler: React.ChangeEventHandler<HTMLInputElement> = (e) => {

@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { IBooking } from "../../components/pages/BookingPage/types/types";
 import { storage } from "../../services/services";
-import { BookingDto } from "../types/types";
+import { BookingDto, deleteBookingDto } from "../types/types";
 import { ActionType } from "./common";
 
 
@@ -48,9 +48,9 @@ const makeBooking = createAsyncThunk<IBooking, BookingDto>(
   }
 )
 
-const deleteBooking = createAsyncThunk(
-  ActionType.DELETE_BOOKINGS,
-  async (bookingId, index) => {
+const deleteBooking = createAsyncThunk<number, deleteBookingDto>(
+  ActionType.DELETE_BOOKING,
+  async ({bookingId, index}) => {
     const token = storage.getItem('token')
     const response = await fetch(`https://travel-app-api.glitch.me/api/v1/bookings/${bookingId}`, {
       method: 'DELETE',

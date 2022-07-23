@@ -1,4 +1,4 @@
-interface IAppPath {
+interface IRoutePath {
   ROOT: string;
   SIGN_UP: string;
   SIGN_IN: string;
@@ -8,7 +8,7 @@ interface IAppPath {
   ANY: string;
 }
 
-const AppPath: IAppPath = {
+const RoutePath: IRoutePath = {
   ROOT: '',
   SIGN_UP: 'sign-up',
   SIGN_IN: 'sign-in',
@@ -18,4 +18,4 @@ const AppPath: IAppPath = {
   ANY: '*'
 }
 
-export default AppPath
+export default RoutePath

@@ -48,6 +48,11 @@ type BookingDto = {
   date: Date;
 }
 
+type deleteBookingDto = {
+  bookingId: string;
+  index: number;
+}
+
 interface IStateTrips {
   loading: boolean;
   trips: ITrip[];
@@ -70,5 +75,6 @@ export type {
   IStateTrips,
   IUserTdo,
   IStateBookings,
-  BookingDto
+  BookingDto,
+  deleteBookingDto
 };

@@ -14,7 +14,8 @@ interface IBooking {
 }
 
 interface IBookingProps {
-  bookingInfo: IBooking
+  bookingInfo: IBooking,
+  index: number
 }
 
 export type { IBooking, IBookingProps }
