@@ -44,7 +44,7 @@ const reducer = createReducer(initialState, (builder) => {
       isAnyOf(
         signIn.rejected,
         signOut.rejected,
-        reSignIn.rejected,
+        // reSignIn.rejected,
         signUp.rejected,
       ),
       (state, action) => {
