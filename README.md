@@ -1,6 +1,6 @@
 # Just a trainee project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+*Heroku can freeze and you have to wait and reload the page.
 
 Load here just for Heroku deploy
 https://bitbucket.org/goodnightbuddy/travel-app/src/master/
